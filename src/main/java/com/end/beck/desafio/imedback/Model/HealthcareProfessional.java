@@ -1,6 +1,5 @@
 package com.end.beck.desafio.imedback.Model;
 
-import java.io.Serializable;
 import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
@@ -12,11 +11,11 @@ import javax.persistence.Id;
 import lombok.Data;
 
 @Data
-@Entity
-public class Patient implements Serializable {
+@Entity(name = "health_care_professional")
+public class HealthcareProfessional {
     
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     @Column
     private Long id;
 
@@ -24,6 +23,6 @@ public class Patient implements Serializable {
     private String name;
     
     @Column(name = "date_created")
-    private ZonedDateTime dateCreated;
+    private ZonedDateTime createdDate;
 
 }

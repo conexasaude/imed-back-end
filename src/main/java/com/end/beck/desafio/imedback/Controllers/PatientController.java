@@ -8,11 +8,8 @@ import com.end.beck.desafio.imedback.Model.Patient;
 import com.end.beck.desafio.imedback.Repository.PatientRepository;
 
 import java.time.ZonedDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,16 +18,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-
-
-
 @RestController
-@RequestMapping(value = "/patient")
+@RequestMapping(path = "/patient")
 public class PatientController {
 
     @Autowired
     PatientRepository patientRepository;
-
 
     @GetMapping(path="/list")
     public ResponseEntity <List<Patient>> getAllPatient() {
@@ -46,7 +39,7 @@ public class PatientController {
     @ResponseBody
     public ResponseEntity<Patient> addNewPatient(Patient patient) {
         
-        patient.setDate_created(ZonedDateTime.now());
+        patient.setDateCreated(ZonedDateTime.now());
         
         return ResponseEntity.ok(this.patientRepository.save(patient));
     }
