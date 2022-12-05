@@ -25,4 +25,13 @@ public class HealthcareProfessional {
     @Column(name = "date_created")
     private ZonedDateTime createdDate;
 
+    @Column
+    private String status;
+    
+    @Column
+    private String rating;
+
+    @Column
+    private String crm;
+    
 }

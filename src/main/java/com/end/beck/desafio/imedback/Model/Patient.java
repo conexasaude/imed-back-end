@@ -18,12 +18,21 @@ public class Patient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Long id;
+    private long id;
 
     @Column
     private String name;
     
     @Column(name = "date_created")
     private ZonedDateTime dateCreated;
+
+    //total de consulta
+    @Column(name = "total_appointment")
+    private int totalAppointment;
+
+    @Column(name = "online_status")
+    private String onlineStatus; 
+
+
 
 }
