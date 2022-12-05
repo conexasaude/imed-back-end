@@ -1,6 +1,7 @@
 package com.end.beck.desafio.imedback.Model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,11 +14,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import lombok.Data;
 
 @Data
 @Entity
-public class User implements Serializable {
+public class User implements Serializable, UserDetails {
    
     @Column
     @Id
@@ -46,5 +50,23 @@ public class User implements Serializable {
         inverseJoinColumns = {@JoinColumn(name = "id_permission")}
     )
     private List<Permission> Permission;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // TODO Auto-generated method stub
+        return false;
+    }
       
 }
