@@ -1,6 +1,7 @@
 package com.end.beck.desafio.imedback.Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -21,7 +22,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class User implements Serializable, UserDetails {
+public class User implements UserDetails, Serializable {
    
     @Column
     @Id
@@ -29,7 +30,7 @@ public class User implements Serializable, UserDetails {
     private long id;    
     
     @Column(unique =  true)
-    private String user;
+    private String username;
     
     @Column
     private String password;
@@ -40,33 +41,59 @@ public class User implements Serializable, UserDetails {
     @Column(name = "account_non_locked")
     private boolean accountNonLocked;
 
+    @Column(name = "credentials_non_expired")
+    private boolean credentialsNonExpired;
+    
     @Column(name = "enabled")
     private boolean enabled;
-
+    
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "user_permission", 
         joinColumns = {@JoinColumn (name = "id_user")},
         inverseJoinColumns = {@JoinColumn(name = "id_permission")}
     )
-    private List<Permission> Permission;
+    
+    private Collection<Permission> permissions;
+ 
+    public List<String> getRoles() {
+        List<String> roles = new ArrayList<>();
+        for (Permission permission : permissions) {
+            roles.add(permission.getDescription());
+        }
+        return roles;
+    }
+
+    public User (){
+
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public String getUsername() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.username;
     }
 
     @Override
-    public boolean isCredentialsNonExpired() {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean isAccountNonExpired() {
+        return this.accountNonExpired;
     }
+
+    @Override
+    public boolean isAccountNonLocked(){
+        return this.accountNonLocked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired(){
+        return this.credentialsNonExpired;
+    }
+
+
+    
       
 }
