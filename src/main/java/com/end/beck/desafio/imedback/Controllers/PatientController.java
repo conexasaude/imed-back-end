@@ -23,7 +23,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class PatientController {
 
     @Autowired
-    PatientRepository patientRepository;
+    private final PatientRepository patientRepository;
+
+    public PatientController(PatientRepository patientRepository) {
+        this.patientRepository = patientRepository;
+    }
 
     @GetMapping(path="/list")
     public ResponseEntity <List<Patient>> getAllPatient() {

@@ -1,5 +1,6 @@
 package com.end.beck.desafio.imedback.Model;
 
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
@@ -12,7 +13,7 @@ import lombok.Data;
 
 @Data
 @Entity(name = "health_care_professional")
-public class HealthcareProfessional {
+public class HealthcareProfessional implements Serializable {
     
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
