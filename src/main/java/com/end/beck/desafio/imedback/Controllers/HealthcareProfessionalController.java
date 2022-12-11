@@ -22,8 +22,12 @@ import com.end.beck.desafio.imedback.Repository.HealthcareProfessionalRepository
 @RequestMapping(path = "/healthcareProfessional")
 public class HealthcareProfessionalController {
     @Autowired
-    private HealthcareProfessionalRepository healthcareProfessionalRepository;
+    private final HealthcareProfessionalRepository healthcareProfessionalRepository;
 
+
+    public HealthcareProfessionalController(HealthcareProfessionalRepository healthcareProfessionalRepository) {
+        this.healthcareProfessionalRepository = healthcareProfessionalRepository;
+    }
 
     @GetMapping(path="/list")
     public ResponseEntity <List<HealthcareProfessional>> getAllPatient() {
