@@ -8,18 +8,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import lombok.Data;
 
 
 @Data
 @Entity
-public class Permission{
+public class Permission implements Serializable, GrantedAuthority{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private long id;
+    private Long id;
    
     @Column
-    private String description;    
+    private String description;
+
+    @Override
+    public String getAuthority() {
+        return this.description;
+    }    
 }

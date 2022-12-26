@@ -8,11 +8,11 @@ public class AttendanceServeImpl implements AttendanceService {
         
     public void existsAttendance(Attendance attendance) {
         if(checkTime(attendance)){
-            throw new RuntimeException("Já possui um atenimento no hórario escolhido");
+            throw new RuntimeException("Já possui um atendimento no hórario escolhido");
         }
     }
 
     private boolean checkTime(Attendance attendance) {
-        return attendance.getStarDateTime() != null|| attendance.getEndDateTime() != null;
+        return attendance.getStarDateTime() != null || attendance.getEndDateTime() != null;
     }
 }

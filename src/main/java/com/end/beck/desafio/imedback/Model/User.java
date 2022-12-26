@@ -19,17 +19,19 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Entity
-public class User implements UserDetails, Serializable {
+@NoArgsConstructor
+@Entity(name = "user")
+public class User implements UserDetails {
    
     @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;    
+    private Long id;    
     
-    @Column(unique =  true)
+    @Column(name = "user_name",unique =  true)
     private String username;
     
     @Column
@@ -52,9 +54,8 @@ public class User implements UserDetails, Serializable {
         name = "user_permission", 
         joinColumns = {@JoinColumn (name = "id_user")},
         inverseJoinColumns = {@JoinColumn(name = "id_permission")}
-    )
-    
-    private Collection<Permission> permissions;
+    )    
+    private List<Permission> permissions;
  
     public List<String> getRoles() {
         List<String> roles = new ArrayList<>();
@@ -63,14 +64,10 @@ public class User implements UserDetails, Serializable {
         }
         return roles;
     }
-
-    public User (){
-
-    }
-
+  
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.permissions;
     }
 
     @Override
