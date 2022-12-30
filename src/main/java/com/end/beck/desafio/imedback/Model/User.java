@@ -1,6 +1,6 @@
 package com.end.beck.desafio.imedback.Model;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -26,9 +26,9 @@ import lombok.NoArgsConstructor;
 @Entity(name = "user")
 public class User implements UserDetails {
    
-    @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="id")
     private Long id;    
     
     @Column(name = "user_name",unique =  true)
@@ -52,8 +52,12 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "user_permission", 
-        joinColumns = {@JoinColumn (name = "id_user")},
-        inverseJoinColumns = {@JoinColumn(name = "id_permission")}
+        joinColumns = {
+            @JoinColumn(name = "id_user")
+        },
+        inverseJoinColumns = {
+            @JoinColumn(name = "id_permission")
+        }
     )    
     private List<Permission> permissions;
  
@@ -67,7 +71,7 @@ public class User implements UserDetails {
   
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.permissions;
+        return  this.permissions;
     }
 
     @Override
