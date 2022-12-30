@@ -1,7 +1,6 @@
 package com.end.beck.desafio.imedback.Model;
 
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
