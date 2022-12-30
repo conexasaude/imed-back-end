@@ -1,7 +1,5 @@
 package com.end.beck.desafio.imedback.Model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +13,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Permission implements Serializable, GrantedAuthority{
+public class Permission implements GrantedAuthority{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
