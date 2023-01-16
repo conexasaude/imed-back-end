@@ -8,4 +8,5 @@ import com.end.beck.desafio.imedback.Model.User;
 public interface UserRepository extends JpaRepository<User , Long> {
     
     User findByUsername(String username);
+    
 }

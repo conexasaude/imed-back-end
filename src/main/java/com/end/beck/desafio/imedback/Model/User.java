@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@Entity(name = "user")
+@Entity(name = "users")
 public class User implements UserDetails {
    
     @Id
@@ -93,8 +93,5 @@ public class User implements UserDetails {
     public boolean isCredentialsNonExpired(){
         return this.credentialsNonExpired;
     }
-
-
-    
       
 }
