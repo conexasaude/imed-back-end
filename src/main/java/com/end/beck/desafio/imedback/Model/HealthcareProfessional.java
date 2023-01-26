@@ -24,7 +24,7 @@ public class HealthcareProfessional implements Serializable {
     private String name;
     
     @Column(name = "date_created")
-    private ZonedDateTime createdDate;
+    private ZonedDateTime createdDate = ZonedDateTime.now();
 
     @Column
     private String status;
