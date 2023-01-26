@@ -1,6 +1,5 @@
 package com.end.beck.desafio.imedback.Security.Jwt;
 
-import java.io.Serializable;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +13,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.auth0.jwt.JWT;
@@ -23,6 +24,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.end.beck.desafio.imedback.Data.VO.TokenVO;
 import com.end.beck.desafio.imedback.Exception.InvalidJWTAuthentication;
 
+@Service
 public class JwtTokenProvider {
 
     @Value("${security.jwt.token.secret-key:secret}")
@@ -34,6 +36,10 @@ public class JwtTokenProvider {
   
     @Autowired
     private UserDetailsService  userDetailsService;
+
+    public JwtTokenProvider(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     Algorithm algorithm = null;
 
