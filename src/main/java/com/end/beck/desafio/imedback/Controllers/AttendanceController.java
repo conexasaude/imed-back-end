@@ -15,53 +15,58 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.end.beck.desafio.imedback.Model.Attendance;
+import com.end.beck.desafio.imedback.Model.DTO.AttendanceDTO;
 import com.end.beck.desafio.imedback.Repository.AttendanceRepository;
+import com.end.beck.desafio.imedback.Service.AttendanceService;
 
 
 
 @RestController
 @RequestMapping("/attendance")
 public class AttendanceController{
-    
+     
     @Autowired
-    private final AttendanceRepository attendanceRepository;
+    private final AttendanceService attendanceService;
 
-    public AttendanceController(AttendanceRepository attendanceRepository) {
-        this.attendanceRepository = attendanceRepository;
+    public AttendanceController(AttendanceService attendanceService) {
+        this.attendanceService = attendanceService;
     }
 
-    @GetMapping(path="/list")
-    public ResponseEntity <List<Attendance>> getAllAttendace() {
-        return ResponseEntity.ok(this.attendanceRepository.findAll());
+    @GetMapping(path="/all")
+    public ResponseEntity <List<Attendance>> getAllAttendance() {
+        return ResponseEntity.ok(this.attendanceService.getAllAttendance());
     }
 
     @GetMapping(path="/{id}")
-    public Optional<Attendance> getAttendancebyId(@PathVariable Attendance attendance) {
-        return this.attendanceRepository.findById(attendance.getId());
+    public ResponseEntity<Optional<Attendance>> getAttendancebyId(@PathVariable Long id) {
+        return ResponseEntity.ok(this.attendanceService.getAttendanceById(id));
     }
    
-    @PostMapping(path="/create")
+    @PostMapping(path="/new-attendance")
     @ResponseBody
     public ResponseEntity<Attendance> addNewAttendance(Attendance attendance) {
-        
-        attendance.setStarDateTime(attendance.getStarDateTime());
-        attendance.setEndDateTime(attendance.getEndDateTime());
-                
-        return ResponseEntity.ok(this.attendanceRepository.save(attendance));
+                               
+        return ResponseEntity.ok(this.attendanceService.createAttendance(attendance));
     }
-
   
-    @PutMapping(path ="/edit/{id}")
+    @PutMapping(path ="/{id}")
     public Attendance updateAttendancebyId(Attendance attendance) {
        
-        this.attendanceRepository.save(attendance);
+        this.attendanceService.updateAttendance(attendance);
+        
         return attendance;    
     }
 
-    @DeleteMapping(path ="/delete/{id}")
-    public String deleteAttendance(@PathVariable Attendance attendance) {
-        this.attendanceRepository.deleteById(attendance.getId());
-        return "atendimento " + attendance + " deletado com sucesso";
+    @DeleteMapping(path ="/{id}")
+    public String deleteAttendance(@PathVariable Long id) throws Exception{
+        try {
+            this.attendanceService.deleteAttendance(id);
+            
+            return "deletado com"+ id +" sucesso";
+        } catch (Exception e) {
+            throw new Exception("atendimento não econtrodado", e);
+        }
+        
     }
 
 }

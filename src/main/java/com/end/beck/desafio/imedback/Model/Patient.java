@@ -24,7 +24,7 @@ public class Patient implements Serializable {
     private String name;
     
     @Column(name = "date_created")
-    private ZonedDateTime dateCreated;
+    private ZonedDateTime dateCreated = ZonedDateTime.now();
 
     //total de consulta
     @Column(name = "total_appointment")
