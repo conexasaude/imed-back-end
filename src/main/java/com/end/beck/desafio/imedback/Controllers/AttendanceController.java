@@ -45,11 +45,9 @@ public class AttendanceController{
     @PostMapping(path="/new-attendance")
     @ResponseBody
     public ResponseEntity<Attendance> addNewAttendance(Attendance attendance) {
-        
-                       
+                               
         return ResponseEntity.ok(this.attendanceService.createAttendance(attendance));
     }
-
   
     @PutMapping(path ="/{id}")
     public Attendance updateAttendancebyId(Attendance attendance) {

@@ -15,6 +15,6 @@ public class AttendanceDTO {
     private Date startDate;
     private Date endDate;
     private Patient patient;
-    private HealthcareProfessional  healthcareProfessional;   
-    
+    private HealthcareProfessional  healthcareProfessional;
+        
 }

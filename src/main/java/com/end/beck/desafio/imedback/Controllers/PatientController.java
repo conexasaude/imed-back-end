@@ -4,10 +4,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.end.beck.desafio.imedback.Model.Patient;
+import com.end.beck.desafio.imedback.Model.DTO.PatientAttendanceDTO;
 import com.end.beck.desafio.imedback.Repository.PatientRepository;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +50,17 @@ public class PatientController {
         
         return ResponseEntity.ok(this.patientRepository.save(patient));
     }
+    
+    @PostMapping(path = "/list-attendance/{id}")
+    public List<PatientAttendanceDTO> listAttendanceByHeathProfessional(
+            @PathVariable Long id, 
+            PatientAttendanceDTO patientAttendanceDTO
+        ) {
 
+           return new ArrayList<>();
+            
+
+    }
   
     @PutMapping(path ="/edit/{id}")
     public Patient updatePatientbyId(Patient patient) {

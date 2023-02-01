@@ -9,6 +9,7 @@ import com.end.beck.desafio.imedback.Model.Attendance;
 
 @Service
 public interface AttendanceService {
+    
     public void existsAttendance(Attendance attendance);
 
     public List<Attendance> getAllAttendance();

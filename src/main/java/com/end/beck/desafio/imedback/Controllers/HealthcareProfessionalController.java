@@ -35,8 +35,8 @@ public class HealthcareProfessionalController {
     }
 
     @GetMapping(path="/{id}")
-    public Optional<HealthcareProfessional> getPatientbyId(@PathVariable Long id) {
-        return this.healthcareProfessionalRepository.findById(id);
+    public ResponseEntity<Optional<HealthcareProfessional>> getPatientbyId(@PathVariable Long id) {
+        return ResponseEntity.ok(this.healthcareProfessionalRepository.findById(id));
     }
    
     @PostMapping(path="/create")

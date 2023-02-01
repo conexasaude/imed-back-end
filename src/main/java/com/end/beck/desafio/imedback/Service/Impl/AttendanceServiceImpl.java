@@ -8,8 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.end.beck.desafio.imedback.Model.Attendance;
+import com.end.beck.desafio.imedback.Model.DTO.AttendanceDTO;
+import com.end.beck.desafio.imedback.Model.DTO.PatientAttendanceDTO;
 import com.end.beck.desafio.imedback.Repository.AttendanceRepository;
 import com.end.beck.desafio.imedback.Service.AttendanceService;
+
+import lombok.var;
 
 @Service
 public class AttendanceServiceImpl implements AttendanceService {
@@ -54,9 +58,19 @@ public class AttendanceServiceImpl implements AttendanceService {
     public void deleteAttendance(Long id){
         this.attendanceRepository.deleteById(id);
     }
+
+    // public void verificationAttendanceByConfirmation(PatientAttendanceDTO attendanceDTO) {
+
+        
+    //     if(){
+    //         this.attendanceRepository.findByPatient();  
+    //     }
+    // }
     
+
     
     public void existsAttendance(Attendance attendance) {
+       
         if(checkTime(attendance)){
             throw new RuntimeException("Já possui um atendimento no hórario escolhido");
         }

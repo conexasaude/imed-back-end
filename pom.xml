@@ -108,6 +108,14 @@
 			<artifactId>java-jwt</artifactId>
 			<version>4.2.1</version>
 		</dependency>	
+
+		<!-- Conversor -->
+
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>3.0.0</version>
+		</dependency>
     
 	</dependencies>
 

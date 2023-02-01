@@ -6,13 +6,15 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.end.beck.desafio.imedback.Data.VO.AccountCredentialsVO;
 import com.end.beck.desafio.imedback.Data.VO.TokenVO;
 import com.end.beck.desafio.imedback.Repository.UserRepository;
 import com.end.beck.desafio.imedback.Security.Jwt.JwtTokenProvider;
 
-public class AuthService {
+@Service
+public class AuthService { 
     
     @Autowired
     private AuthenticationManager authenticationManager;
