@@ -11,26 +11,22 @@ import com.end.beck.desafio.imedback.Service.HealthcareProfessionalService;
 
 public class HealthcareProfessionalServiceImpl implements HealthcareProfessionalService {
 
-    @Autowired
+    
     private HealthcareProfessionalRepository healthcareProfessionalRepository;
 
     public HealthcareProfessionalServiceImpl(HealthcareProfessionalRepository healthcareProfessionalRepository) {
-        
-        this.healthcareProfessionalRepository = healthcareProfessionalRepository;
+       this.healthcareProfessionalRepository = healthcareProfessionalRepository;
     }
 
-    public List<HealthcareProfessional> getAllHealthcareProfessionals() {
-        
+    public List<HealthcareProfessional> getAllHealthcareProfessional() {
         return this.healthcareProfessionalRepository.findAll();
     }
 
-    public Optional<HealthcareProfessional> getHealthcareProfessionalById (Long id) {
-
-        return this.healthcareProfessionalRepository.findById(id);
+    public Long findByHeathcareProfessionalId(Long id) {
+        return this.healthcareProfessionalRepository.findByHeathcareProfessionalId(id);
     }
 
-    public HealthcareProfessional createHealthcareProfessional(HealthcareProfessional healthcareProfessional) {
-               
+    public HealthcareProfessional createHealthcareProfessional(HealthcareProfessional healthcareProfessional) {               
         return this.healthcareProfessionalRepository.save(healthcareProfessional);
     }
 
@@ -41,14 +37,14 @@ public class HealthcareProfessionalServiceImpl implements HealthcareProfessional
         return this.healthcareProfessionalRepository.save(healthcareProfessional);
     }
 
-    public String deleteHealthcareProfessional(Long id) throws Exception{
+    public String deleteHealthcareProfessional(Long id) {
         
         try {
             this.healthcareProfessionalRepository.deleteById(id);
                         
             return "deletado com"+ id +" sucesso";
         } catch (Exception e) {
-            throw new Exception("atendimento não econtrodado", e);
+           return e + "erro ao delete profissional";
         }
     }
     

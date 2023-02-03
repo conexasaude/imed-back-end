@@ -2,9 +2,6 @@ package com.end.beck.desafio.imedback.Controllers;
 
 import java.time.ZonedDateTime;
 import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,50 +13,48 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.end.beck.desafio.imedback.Model.HealthcareProfessional;
-import com.end.beck.desafio.imedback.Repository.HealthcareProfessionalRepository;
+import com.end.beck.desafio.imedback.Service.HealthcareProfessionalService;
 
 @RestController
 @RequestMapping(path = "/healthcareProfessional")
 public class HealthcareProfessionalController {
-    @Autowired
-    private final HealthcareProfessionalRepository healthcareProfessionalRepository;
+    
+    private final HealthcareProfessionalService healthcareProfessionalService;
 
-
-    public HealthcareProfessionalController(HealthcareProfessionalRepository healthcareProfessionalRepository) {
-        this.healthcareProfessionalRepository = healthcareProfessionalRepository;
+    public HealthcareProfessionalController(HealthcareProfessionalService healthcareProfessionalService) {
+        this.healthcareProfessionalService = healthcareProfessionalService;
     }
 
-    @GetMapping(path="/list")
-    public ResponseEntity <List<HealthcareProfessional>> getAllPatient() {
-        return ResponseEntity.ok(this.healthcareProfessionalRepository.findAll());
+    @GetMapping(path="/healthcareProfessionals")
+    public ResponseEntity <List<HealthcareProfessional>> healthcareProfessionals() {
+        return ResponseEntity.ok(this.healthcareProfessionalService.getAllHealthcareProfessional());
     }
 
     @GetMapping(path="/{id}")
-    public ResponseEntity<Optional<HealthcareProfessional>> getPatientbyId(@PathVariable Long id) {
-        return ResponseEntity.ok(this.healthcareProfessionalRepository.findById(id));
+    public ResponseEntity<Long> findOne(@PathVariable Long id) {
+        return ResponseEntity.ok(this.healthcareProfessionalService.findByHeathcareProfessionalId(id));
     }
    
     @PostMapping(path="/create")
     @ResponseBody
-    public ResponseEntity<HealthcareProfessional> addNewPatient(HealthcareProfessional healthcareProfessional) {
+    public ResponseEntity<HealthcareProfessional> create(HealthcareProfessional healthcareProfessional) {
         
         healthcareProfessional.setCreatedDate(ZonedDateTime.now());
         
-        return ResponseEntity.ok(this.healthcareProfessionalRepository.save(healthcareProfessional));
+        return ResponseEntity.ok(this.healthcareProfessionalService.createHealthcareProfessional(healthcareProfessional));
     }
-
   
-    @PutMapping(path ="/edit/{id}")
-    public HealthcareProfessional updatePatientbyId(HealthcareProfessional healthcareProfessional) {
+    @PutMapping(path ="{id}")
+    public ResponseEntity<HealthcareProfessional> update(HealthcareProfessional healthcareProfessional) {
        
-        this.healthcareProfessionalRepository.save(healthcareProfessional);
-        return healthcareProfessional;    
+        this.healthcareProfessionalService. updateHealthcareProfessional(healthcareProfessional);
+
+        return ResponseEntity.ok(healthcareProfessional);    
     }
 
-    @DeleteMapping(path ="/delete/{id}")
-    public String deletePatient(HealthcareProfessional healthcareProfessional) {
-        this.healthcareProfessionalRepository.deleteById(healthcareProfessional.getId());
-        return "paciente " + healthcareProfessional.getId() + " deletado com sucesso";
+    @DeleteMapping(path ="{id}")
+    public ResponseEntity<String> delete(Long id) {
+        return ResponseEntity.ok(healthcareProfessionalService.deleteHealthcareProfessional(id));       
     }
 
     

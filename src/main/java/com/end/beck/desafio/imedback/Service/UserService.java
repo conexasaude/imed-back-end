@@ -7,8 +7,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.end.beck.desafio.imedback.Repository.UserRepository;
 
+import lombok.Builder;
 import lombok.var;
 
+@Builder
 public class UserService  implements UserDetailsService{
 
     @Autowired

@@ -1,7 +1,6 @@
 package com.end.beck.desafio.imedback.Controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.end.beck.desafio.imedback.Model.Attendance;
-import com.end.beck.desafio.imedback.Model.DTO.AttendanceDTO;
-import com.end.beck.desafio.imedback.Repository.AttendanceRepository;
 import com.end.beck.desafio.imedback.Service.AttendanceService;
 
 
@@ -24,7 +21,7 @@ import com.end.beck.desafio.imedback.Service.AttendanceService;
 @RestController
 @RequestMapping("/attendance")
 public class AttendanceController{
-     
+    
     @Autowired
     private final AttendanceService attendanceService;
 
@@ -32,36 +29,35 @@ public class AttendanceController{
         this.attendanceService = attendanceService;
     }
 
-    @GetMapping(path="/all")
+    @GetMapping(path="/attendances")
     public ResponseEntity <List<Attendance>> getAllAttendance() {
         return ResponseEntity.ok(this.attendanceService.getAllAttendance());
     }
 
     @GetMapping(path="/{id}")
-    public ResponseEntity<Optional<Attendance>> getAttendancebyId(@PathVariable Long id) {
+    public ResponseEntity<Long> getAttendancebyId(@PathVariable Long id) {
         return ResponseEntity.ok(this.attendanceService.getAttendanceById(id));
     }
    
-    @PostMapping(path="/new-attendance")
+    @PostMapping(path="/attendance")
     @ResponseBody
-    public ResponseEntity<Attendance> addNewAttendance(Attendance attendance) {
-                               
-        return ResponseEntity.ok(this.attendanceService.createAttendance(attendance));
+    public ResponseEntity<Attendance> create(Attendance attendance) {                
+        return ResponseEntity.ok(this.attendanceService.create(attendance));
     }
   
     @PutMapping(path ="/{id}")
-    public Attendance updateAttendancebyId(Attendance attendance) {
+    public ResponseEntity<Attendance> update(Attendance attendance) {
        
-        this.attendanceService.updateAttendance(attendance);
+        this.attendanceService.update(attendance);
         
-        return attendance;    
+        return ResponseEntity.ok(attendance);    
     }
 
     @DeleteMapping(path ="/{id}")
-    public String deleteAttendance(@PathVariable Long id) throws Exception{
+    public String delete(@PathVariable Long id) throws Exception{
+        
         try {
-            this.attendanceService.deleteAttendance(id);
-            
+            this.attendanceService.delete(id);            
             return "deletado com"+ id +" sucesso";
         } catch (Exception e) {
             throw new Exception("atendimento não econtrodado", e);

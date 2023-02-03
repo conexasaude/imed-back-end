@@ -14,11 +14,11 @@ public interface AttendanceService {
 
     public List<Attendance> getAllAttendance();
 
-    public Optional<Attendance> getAttendanceById (Long id);
+    public Long getAttendanceById (Long id);
 
-    public Attendance createAttendance(Attendance attendance);
+    public Attendance create(Attendance attendance);
 
-    public Attendance updateAttendance (Attendance attendance);
+    public Attendance update (Attendance attendance);
     
-    public void deleteAttendance(Long id);    
+    public void delete(Long id);    
 }
