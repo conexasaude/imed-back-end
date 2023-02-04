@@ -15,7 +15,7 @@ import com.end.beck.desafio.imedback.Service.AuthService;
 @RequestMapping("/auth")
 public class AuthController {
 
-	@Autowired
+	
 	AuthService authService;
 	
 	@SuppressWarnings("rawtypes")

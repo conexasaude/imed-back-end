@@ -2,8 +2,13 @@ package com.end.beck.desafio.imedback.Service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.end.beck.desafio.imedback.Model.HealthcareProfessional;
 
+import lombok.AllArgsConstructor;
+
+@Service
 public interface HealthcareProfessionalService {
     
    List<HealthcareProfessional> getAllHealthcareProfessional();

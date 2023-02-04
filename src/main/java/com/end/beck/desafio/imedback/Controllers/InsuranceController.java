@@ -16,46 +16,47 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.end.beck.desafio.imedback.Model.Insurance;
 import com.end.beck.desafio.imedback.Repository.InsuranceRepository;
+import com.end.beck.desafio.imedback.Service.InsuranceService;
 
 @RequestMapping
 @RestController(value = "/insurance")
 public class InsuranceController {
     
     @Autowired
-    private final InsuranceRepository insuranceRepository;
+    private final InsuranceService insuranceService;
 
-    public InsuranceController(InsuranceRepository insuranceRepository) {
-        this.insuranceRepository = insuranceRepository;
+    public InsuranceController(InsuranceService insuranceService) {
+        this.insuranceService = insuranceService;
     }
 
-    @GetMapping(path="/list")
+    @GetMapping(path="/insurances")
     public ResponseEntity <List<Insurance>> getAllInsurance() {
-        return ResponseEntity.ok(this.insuranceRepository.findAll());
+        return ResponseEntity.ok(this.insuranceService.findAllInsurances());
     }
 
     @GetMapping(path="/{id}")
-    public Optional<Insurance> getPatientbyId(@PathVariable Long id) {
-        return this.insuranceRepository.findById(id);
+    public Long findOne(@PathVariable Long id) {
+        return this.insuranceService.getInsuranceById(id);
     }
    
     @PostMapping(path="/create")
     @ResponseBody
-    public ResponseEntity<Insurance> addNewPatient(Insurance insurance) {
+    public ResponseEntity<Insurance> create(Insurance insurance) {
                
-        return ResponseEntity.ok(this.insuranceRepository.save(insurance));
+        return ResponseEntity.ok(this.insuranceService.create(insurance));
     }
   
-    @PutMapping(path ="/edit/{id}")
-    public Insurance updatePatientbyId(Insurance insurance) {
+    @PutMapping(path ="/{id}")
+    public Insurance update(Insurance insurance) {
        
-        this.insuranceRepository.save(insurance);
+        this.insuranceService.update(insurance);
         return insurance;    
     }
 
-    @DeleteMapping(path ="/delete/{id}")
-    public String deletePatient(Insurance insurance) {
-        this.insuranceRepository.deleteById(insurance.getId());
-        return "paciente " + insurance.getId() + " deletado com sucesso";
+    @DeleteMapping(path ="/{id}")
+    public String delete(Long id) {
+        this.insuranceService.delete(id);
+        return "paciente " + id + " deletado com sucesso";
     }
 
 }

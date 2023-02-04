@@ -2,6 +2,8 @@ package com.end.beck.desafio.imedback.Controllers;
 
 import java.time.ZonedDateTime;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,14 +19,15 @@ import com.end.beck.desafio.imedback.Service.HealthcareProfessionalService;
 
 @RestController
 @RequestMapping(path = "/healthcareProfessional")
-public class HealthcareProfessionalController {
+public class HealthcareProfessionalController {    
     
+    @Autowired
     private final HealthcareProfessionalService healthcareProfessionalService;
-
+    
     public HealthcareProfessionalController(HealthcareProfessionalService healthcareProfessionalService) {
         this.healthcareProfessionalService = healthcareProfessionalService;
     }
-
+   
     @GetMapping(path="/healthcareProfessionals")
     public ResponseEntity <List<HealthcareProfessional>> healthcareProfessionals() {
         return ResponseEntity.ok(this.healthcareProfessionalService.getAllHealthcareProfessional());

@@ -4,11 +4,13 @@
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.end.beck.desafio.imedback.Model.Patient;
 
+@Repository
 public interface PatientRepository extends JpaRepository<Patient,Long> {
 
-    public Optional<Long> findByName(String name); 
+    Long findByPatientId(Long id);
        
 }

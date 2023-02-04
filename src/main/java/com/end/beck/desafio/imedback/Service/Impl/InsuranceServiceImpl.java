@@ -1,14 +1,40 @@
 package com.end.beck.desafio.imedback.Service.Impl;
 
 import com.end.beck.desafio.imedback.Service.InsuranceService;
+
+import java.util.List;
+
+import com.end.beck.desafio.imedback.Model.Insurance;
 import com.end.beck.desafio.imedback.Repository.InsuranceRepository;
 
 public class InsuranceServiceImpl implements InsuranceService {
     
     private InsuranceRepository insuranceRepository;
 
-    public List getAllInsurances() {
-        this.insuranceRepository.findAll();
+    public List<Insurance> findAllInsurances() {
+        return this.insuranceRepository.findAll();
     }
+
+    public Long getInsuranceById(Long id){
+        return insuranceRepository.findInsuranceById(id);
+    }
+    
+    public Insurance create(Insurance insurance) {
+        return this.insuranceRepository.save(insurance);
+    }
+
+    public Insurance update(Insurance insurance) {
+        
+        insurance.setName(insurance.getName());
+        insurance.setCnpj(insurance.getCnpj());
+        insurance.setPrice(insurance.getPrice());
+
+        return this.insuranceRepository.save(insurance);
+    }
+
+    public void delete(Long id) {
+        this.insuranceRepository.deleteById(id);
+    }
+
     
 }

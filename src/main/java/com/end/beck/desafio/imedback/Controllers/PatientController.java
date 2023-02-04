@@ -25,54 +25,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RequestMapping(path = "/patient")
 public class PatientController {
 
-    @Autowired
-    private final PatientRepository patientRepository;
-
-    public PatientController(PatientRepository patientRepository) {
-        this.patientRepository = patientRepository;
-    }
-
-    @GetMapping(path="/list")
-    public ResponseEntity <List<Patient>> getAllPatient() {
-        return ResponseEntity.ok(this.patientRepository.findAll());
-    }
-
-    @GetMapping(path="/{id}")
-    public Optional<Patient> getPatientbyId(@PathVariable Long id) {
-        return this.patientRepository.findById(id);
-    }
    
-    @PostMapping(path="/create")
-    @ResponseBody
-    public ResponseEntity<Patient> addNewPatient(Patient patient) {
-        
-        patient.setDateCreated(ZonedDateTime.now());
-        
-        return ResponseEntity.ok(this.patientRepository.save(patient));
-    }
-    
-    @PostMapping(path = "/list-attendance/{id}")
-    public List<PatientAttendanceDTO> listAttendanceByHeathProfessional(
-            @PathVariable Long id, 
-            PatientAttendanceDTO patientAttendanceDTO
-        ) {
-
-           return new ArrayList<>();
-            
-
-    }
-  
-    @PutMapping(path ="/edit/{id}")
-    public Patient updatePatientbyId(Patient patient) {
-       
-        this.patientRepository.save(patient);
-        return patient;    
-    }
-
-    @DeleteMapping(path ="/delete/{id}")
-    public String deletePatient(Patient patient) {
-        this.patientRepository.deleteById(patient.getId());
-        return "paciente " + patient.getId() + " deletado com sucesso";
-    }
     
 }

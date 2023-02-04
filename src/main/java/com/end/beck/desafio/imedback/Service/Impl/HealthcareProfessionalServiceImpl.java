@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.end.beck.desafio.imedback.Model.HealthcareProfessional;
 import com.end.beck.desafio.imedback.Repository.HealthcareProfessionalRepository;
 import com.end.beck.desafio.imedback.Service.HealthcareProfessionalService;
 
+@Service
 public class HealthcareProfessionalServiceImpl implements HealthcareProfessionalService {
 
     

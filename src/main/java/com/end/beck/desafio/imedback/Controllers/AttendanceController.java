@@ -2,7 +2,6 @@ package com.end.beck.desafio.imedback.Controllers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,13 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.end.beck.desafio.imedback.Model.Attendance;
 import com.end.beck.desafio.imedback.Service.AttendanceService;
 
-
-
 @RestController
 @RequestMapping("/attendance")
 public class AttendanceController{
     
-    @Autowired
+    
     private final AttendanceService attendanceService;
 
     public AttendanceController(AttendanceService attendanceService) {
