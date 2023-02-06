@@ -1,12 +1,10 @@
 package com.end.beck.desafio.imedback.Service.Impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.end.beck.desafio.imedback.Model.Patient;
-import com.end.beck.desafio.imedback.Model.DTO.PatientAttendanceDTO;
 import com.end.beck.desafio.imedback.Repository.PatientRepository;
 import com.end.beck.desafio.imedback.Service.PatientService;
 

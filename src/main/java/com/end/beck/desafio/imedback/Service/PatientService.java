@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.end.beck.desafio.imedback.Model.Patient;
-import com.end.beck.desafio.imedback.Model.DTO.PatientAttendanceDTO;
 
 @Service
 public interface PatientService {

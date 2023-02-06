@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.end.beck.desafio.imedback.Model.HealthcareProfessional;
 
-import lombok.AllArgsConstructor;
-
 @Service
 public interface HealthcareProfessionalService {
     

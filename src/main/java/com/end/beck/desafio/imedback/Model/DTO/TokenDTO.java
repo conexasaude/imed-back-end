@@ -1,4 +1,4 @@
-package com.end.beck.desafio.imedback.Data.VO;
+package com.end.beck.desafio.imedback.Model.DTO;
 
 import java.util.Date;
 
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class TokenVO {
+public class TokenDTO {
     
     private String username;
     private boolean authentication;

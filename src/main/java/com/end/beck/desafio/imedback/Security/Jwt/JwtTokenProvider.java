@@ -13,7 +13,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -21,8 +20,8 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.end.beck.desafio.imedback.Data.VO.TokenVO;
 import com.end.beck.desafio.imedback.Exception.InvalidJWTAuthentication;
+import com.end.beck.desafio.imedback.Model.DTO.TokenDTO;
 
 @Service
 public class JwtTokenProvider {
@@ -50,14 +49,14 @@ public class JwtTokenProvider {
 
     }
     
-    public TokenVO createAccessTokenVO(String username, List<String> roles) {
+    public TokenDTO createAccessTokenVO(String username, List<String> roles) {
         
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMilliseconds);
         var acessToken = getAcessToken(username, roles ,now ,validity);
         var refreshToken = getRefreshToken(username, roles, now);
         
-        return new TokenVO(username ,true ,now ,validity ,acessToken ,refreshToken);
+        return new TokenDTO(username ,true ,now ,validity ,acessToken ,refreshToken);
     }
     
     private String getAcessToken(String username, List<String> roles, Date now, Date validity) {

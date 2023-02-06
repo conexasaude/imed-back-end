@@ -8,8 +8,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.end.beck.desafio.imedback.Data.VO.AccountCredentialsVO;
-import com.end.beck.desafio.imedback.Data.VO.TokenVO;
+import com.end.beck.desafio.imedback.Model.DTO.AccountCredentialsDTO;
+import com.end.beck.desafio.imedback.Model.DTO.TokenDTO;
 import com.end.beck.desafio.imedback.Repository.UserRepository;
 import com.end.beck.desafio.imedback.Security.Jwt.JwtTokenProvider;
 
@@ -27,7 +27,7 @@ public class AuthService {
     private UserRepository userRepository;
 
     @SuppressWarnings("rawtypes")
-    public ResponseEntity signin( AccountCredentialsVO data) {
+    public ResponseEntity signin( AccountCredentialsDTO data) {
         try {
             var username = data.getUsername();
 			var password = data.getPassword();
@@ -35,7 +35,7 @@ public class AuthService {
                 new UsernamePasswordAuthenticationToken(username, password)
             );
             var user = userRepository.findByUsername(username);
-            var tokenReponse = new TokenVO();
+            var tokenReponse = new TokenDTO();
             if (user != null) {
                 tokenReponse = jwtTokenProvider.createAccessTokenVO(username, user.getRoles());              
             }else{

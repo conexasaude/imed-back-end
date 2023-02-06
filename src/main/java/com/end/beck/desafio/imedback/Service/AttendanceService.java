@@ -1,8 +1,6 @@
 package com.end.beck.desafio.imedback.Service;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import com.end.beck.desafio.imedback.Model.Attendance;

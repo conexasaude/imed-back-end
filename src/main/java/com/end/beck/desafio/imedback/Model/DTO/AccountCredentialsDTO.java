@@ -1,4 +1,4 @@
-package com.end.beck.desafio.imedback.Data.VO;
+package com.end.beck.desafio.imedback.Model.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountCredentialsVO {
+public class AccountCredentialsDTO {
 
     private String username;
 	private String password;
