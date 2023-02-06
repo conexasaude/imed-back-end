@@ -37,8 +37,10 @@ public class PatientServiceImpl implements PatientService {
     }
 
     public Patient update(Patient patient) {
-
         
+        patient.setName(patient.getName());
+        patient.setOnlineStatus(patient.getOnlineStatus());
+        patient.setTotalAppointment(patient.getTotalAppointment());        
 
         return this.patientRepository.save(patient);
     }

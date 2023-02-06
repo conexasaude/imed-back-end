@@ -4,9 +4,12 @@ import com.end.beck.desafio.imedback.Service.InsuranceService;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.end.beck.desafio.imedback.Model.Insurance;
 import com.end.beck.desafio.imedback.Repository.InsuranceRepository;
 
+@Service
 public class InsuranceServiceImpl implements InsuranceService {
     
     private InsuranceRepository insuranceRepository;

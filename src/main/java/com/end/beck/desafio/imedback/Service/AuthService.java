@@ -17,7 +17,7 @@ import com.end.beck.desafio.imedback.Security.Jwt.JwtTokenProvider;
 @Service
 public class AuthService { 
     
-    @Autowired
+    
     private AuthenticationManager authenticationManager;
 
     @Autowired

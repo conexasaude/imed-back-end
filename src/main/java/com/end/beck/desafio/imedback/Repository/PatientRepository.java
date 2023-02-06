@@ -1,9 +1,7 @@
  package com.end.beck.desafio.imedback.Repository;
 
-
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.end.beck.desafio.imedback.Model.Patient;
@@ -11,6 +9,7 @@ import com.end.beck.desafio.imedback.Model.Patient;
 @Repository
 public interface PatientRepository extends JpaRepository<Patient,Long> {
 
+    @Query(value = "SELECT id FROM patient where id = :id", nativeQuery = true)
     Long findByPatientId(Long id);
        
 }

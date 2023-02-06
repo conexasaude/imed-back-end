@@ -21,7 +21,7 @@ import com.end.beck.desafio.imedback.Service.HealthcareProfessionalService;
 @RequestMapping(path = "/healthcareProfessional")
 public class HealthcareProfessionalController {    
     
-    @Autowired
+    
     private final HealthcareProfessionalService healthcareProfessionalService;
     
     public HealthcareProfessionalController(HealthcareProfessionalService healthcareProfessionalService) {
@@ -34,7 +34,7 @@ public class HealthcareProfessionalController {
     }
 
     @GetMapping(path="/{id}")
-    public ResponseEntity<Long> findOne(@PathVariable Long id) {
+    public ResponseEntity<Long> findOneHealtchcareProfessional(@PathVariable Long id) {
         return ResponseEntity.ok(this.healthcareProfessionalService.findByHeathcareProfessionalId(id));
     }
    
