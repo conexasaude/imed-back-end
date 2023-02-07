@@ -37,7 +37,7 @@ public class HealthcareProfessionalController {
         return ResponseEntity.ok(this.healthcareProfessionalService.findByHeathcareProfessionalId(id));
     }
    
-    @PostMapping(path="/create")
+    @PostMapping(path="/healthcare-professional")
     @ResponseBody
     public ResponseEntity<HealthcareProfessional> create(HealthcareProfessional healthcareProfessional) {
         

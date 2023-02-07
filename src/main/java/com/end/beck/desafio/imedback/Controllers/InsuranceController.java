@@ -36,7 +36,7 @@ public class InsuranceController {
         return this.insuranceService.getInsuranceById(id);
     }
    
-    @PostMapping(path="/create")
+    @PostMapping(path="/insurance")
     @ResponseBody
     public ResponseEntity<Insurance> create(Insurance insurance) {
                

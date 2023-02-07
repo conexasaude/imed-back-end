@@ -19,19 +19,15 @@ public class PatientServiceImpl implements PatientService {
     }
 
     public List<Patient> getAllPatients() {
-
         return this.patientRepository.findAll();
     }
 
     public Long getPatientById(Long id) {
-
         return this.patientRepository.findByPatientId(id);
     }
 
     public Patient create(Patient patient) {
-
         return this.patientRepository.save(patient);
-
     }
 
     public Patient update(Patient patient) {
