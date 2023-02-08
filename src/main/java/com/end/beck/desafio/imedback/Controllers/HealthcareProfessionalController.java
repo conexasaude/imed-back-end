@@ -17,7 +17,7 @@ import com.end.beck.desafio.imedback.Model.HealthcareProfessional;
 import com.end.beck.desafio.imedback.Service.HealthcareProfessionalService;
 
 @RestController
-@RequestMapping(path = "/healthcareProfessional")
+@RequestMapping(path = "/healthcare-professional")
 public class HealthcareProfessionalController {    
     
     
@@ -27,7 +27,7 @@ public class HealthcareProfessionalController {
         this.healthcareProfessionalService = healthcareProfessionalService;
     }
    
-    @GetMapping(path="/healthcareProfessionals")
+    @GetMapping(path="/healthcare-professionals")
     public ResponseEntity <List<HealthcareProfessional>> healthcareProfessionals() {
         return ResponseEntity.ok(this.healthcareProfessionalService.getAllHealthcareProfessional());
     }
