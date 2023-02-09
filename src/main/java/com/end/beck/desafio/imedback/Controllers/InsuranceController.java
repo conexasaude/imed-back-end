@@ -1,7 +1,6 @@
 package com.end.beck.desafio.imedback.Controllers;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +18,7 @@ import com.end.beck.desafio.imedback.Service.InsuranceService;
 @RestController(value = "/insurance")
 public class InsuranceController {
     
-    @Autowired
+   
     private final InsuranceService insuranceService;
 
     public InsuranceController(InsuranceService insuranceService) {
@@ -44,16 +43,16 @@ public class InsuranceController {
     }
   
     @PutMapping(path ="/{id}")
-    public Insurance update(Insurance insurance) {
-       
+    public ResponseEntity<Insurance> update(@PathVariable Long id, Insurance insurance) {
         this.insuranceService.update(insurance);
-        return insurance;    
+       
+        return ResponseEntity.ok(insurance);    
     }
 
     @DeleteMapping(path ="/{id}")
-    public String delete(Long id) {
-        this.insuranceService.delete(id);
-        return "paciente " + id + " deletado com sucesso";
+    public ResponseEntity<String> delete(Long id) {
+        return ResponseEntity.ok(this.insuranceService.delete(id));
+        
     }
 
 }

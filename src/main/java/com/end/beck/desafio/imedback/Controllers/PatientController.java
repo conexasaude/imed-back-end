@@ -42,7 +42,7 @@ public class PatientController {
     }
   
     @PutMapping(path ="/{id}")
-    public ResponseEntity<Patient> update(Patient patient) {
+    public ResponseEntity<Patient> update(@PathVariable Long id, Patient patient) {
         
         this.patientService.update(patient);
         
@@ -50,15 +50,8 @@ public class PatientController {
     }
 
     @DeleteMapping(path ="/{id}")
-    public String delete(@PathVariable Long id) throws Exception{
-        
-        try {
-            this.patientService.delete(id);            
-            return "deletado com"+ id +" sucesso";
-        } catch (Exception e) {
-            throw new Exception("paciente não econtrodado", e);
-        }
-        
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        return ResponseEntity.ok(this.patientService.delete(id));                  
     }
     
 }

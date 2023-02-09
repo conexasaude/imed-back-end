@@ -43,7 +43,7 @@ public class HealthcareProfessionalServiceImpl implements HealthcareProfessional
                         
             return "deletado com"+ id +" sucesso";
         } catch (Exception e) {
-           return e + "erro ao delete profissional";
+           return e + "erro ao deletar profissional";
         }
     }
     

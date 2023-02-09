@@ -1,31 +1,21 @@
 package com.end.beck.desafio.imedback.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import java.util.List;
 
-import com.end.beck.desafio.imedback.Repository.UserRepository;
+import org.springframework.stereotype.Service;
 
-import lombok.Builder;
-import lombok.var;
+import com.end.beck.desafio.imedback.Model.User;
 
-@Builder
-public class UserService  implements UserDetailsService{
+@Service
+public interface UserService {
+    
+    public List<User> getAllUsers();
 
-    @Autowired
-    UserRepository userRepository;
+    public Long getUserById(Long id);
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        var user = userRepository.findByUsername(username);
-            if (user != null) {
-                return user;
-            }else{
+    public User create(User user);
 
-                throw new UsernameNotFoundException("Ursaname" + username + "Não encontrado");
-            }
-    }
-
-
+    public User update(User user);
+    
+    public String delete(Long id);    
 }

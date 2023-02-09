@@ -47,9 +47,9 @@ public class HealthcareProfessionalController {
     }
   
     @PutMapping(path ="{id}")
-    public ResponseEntity<HealthcareProfessional> update(HealthcareProfessional healthcareProfessional) {
-       
-        this.healthcareProfessionalService. updateHealthcareProfessional(healthcareProfessional);
+    public ResponseEntity<HealthcareProfessional> update(@PathVariable Long id, HealthcareProfessional healthcareProfessional) {
+        
+        this.healthcareProfessionalService.updateHealthcareProfessional(healthcareProfessional);
 
         return ResponseEntity.ok(healthcareProfessional);    
     }

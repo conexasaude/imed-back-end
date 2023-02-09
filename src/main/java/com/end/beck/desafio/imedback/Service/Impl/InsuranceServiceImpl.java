@@ -35,8 +35,14 @@ public class InsuranceServiceImpl implements InsuranceService {
         return this.insuranceRepository.save(insurance);
     }
 
-    public void delete(Long id) {
-        this.insuranceRepository.deleteById(id);
+    public String delete(Long id) {
+        try {
+            this.insuranceRepository.deleteById(id);
+                                    
+            return "deletado "+ id +" com sucesso";
+        } catch (Exception e) {
+           return e + "erro ao deletar Convênio";
+        }
     }
 
     

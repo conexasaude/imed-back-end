@@ -17,6 +17,6 @@ public interface PatientService {
 
     public Patient update (Patient patient);
     
-    public void delete(Long id);    
+    public String delete(Long id);    
     
 }

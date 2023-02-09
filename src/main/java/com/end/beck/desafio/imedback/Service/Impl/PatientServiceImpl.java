@@ -39,8 +39,14 @@ public class PatientServiceImpl implements PatientService {
         return this.patientRepository.save(patient);
     }
 
-    public void delete(Long id) {
-        this.patientRepository.deleteById(id);
+    public String delete(Long id) {
+        try {
+            this.patientRepository.deleteById(id);
+                                    
+            return "deletado "+ id +" com sucesso";
+        } catch (Exception e) {
+           return e + "erro ao deletar paciente";
+        }
     }
   
 }

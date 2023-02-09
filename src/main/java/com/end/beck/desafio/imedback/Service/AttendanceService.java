@@ -18,5 +18,5 @@ public interface AttendanceService {
 
     public Attendance update (Attendance attendance);
     
-    public void delete(Long id);    
+    public String delete(Long id);    
 }

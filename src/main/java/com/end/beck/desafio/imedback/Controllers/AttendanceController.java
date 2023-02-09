@@ -43,7 +43,7 @@ public class AttendanceController{
     }
   
     @PutMapping(path ="/{id}")
-    public ResponseEntity<Attendance> update(Attendance attendance) {
+    public ResponseEntity<Attendance> update( @PathVariable Long id, Attendance attendance) {
        
         this.attendanceService.update(attendance);
         
@@ -51,14 +51,8 @@ public class AttendanceController{
     }
 
     @DeleteMapping(path ="/{id}")
-    public String delete(@PathVariable Long id) throws Exception{
-        
-        try {
-            this.attendanceService.delete(id);            
-            return "deletado com"+ id +" sucesso";
-        } catch (Exception e) {
-            throw new Exception("atendimento não econtrodado", e);
-        }
+    public ResponseEntity<String> delete(@PathVariable Long id){
+       return ResponseEntity.ok(this.attendanceService.delete(id));            
         
     }
 

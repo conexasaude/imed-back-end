@@ -1,9 +1,7 @@
 package com.end.beck.desafio.imedback.Controllers;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,48 +13,47 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.end.beck.desafio.imedback.Model.User;
-import com.end.beck.desafio.imedback.Repository.UserRepository;
+import com.end.beck.desafio.imedback.Service.UserService;
 
 @RestController
 @RequestMapping(params = "/user")
-public class UserController {
-    @Autowired
-    private final UserRepository userRepository;
+public class UserController {   
+
+    private final UserService userService;
 
    
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    @GetMapping(path="/list")
-    public ResponseEntity <List<User>> getAllPatient() {
-        return ResponseEntity.ok(this.userRepository.findAll());
+    @GetMapping(path="/users")
+    public ResponseEntity <List<User>> users() {
+        return ResponseEntity.ok(this.userService.getAllUsers());
     }
 
     @GetMapping(path="/{id}")
-    public Optional<User> getPatientbyId(@PathVariable Long id) {
-        return this.userRepository.findById(id);
+    public ResponseEntity<Long> findUser(@PathVariable Long id) {
+        return ResponseEntity.ok(this.userService.getUserById(id));
     }
    
-    @PostMapping(path="/create")
+    @PostMapping(path="/user")
     @ResponseBody
-    public ResponseEntity<User> addNewPatient(User user) {
+    public ResponseEntity<User> create(User user) {
               
-        return ResponseEntity.ok(this.userRepository.save(user));
+        return ResponseEntity.ok(this.userService.create(user));
     }
 
   
-    @PutMapping(path ="/edit/{id}")
-    public User updatePatientbyId(User user) {
+    @PutMapping(path ="/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id, User user) {
+        this.userService.update(user);
        
-        this.userRepository.save(user);
-        return user;    
+        return ResponseEntity.ok(user);    
     }
 
-    @DeleteMapping(path ="/delete/{id}")
-    public String deletePatient(User user) {
-        this.userRepository.deleteById(user.getId());
-        return "paciente " + user.getId() + " deletado com sucesso";
+    @DeleteMapping(path ="/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        return ResponseEntity.ok(this.userService.delete(id));        
     }
     
 }
