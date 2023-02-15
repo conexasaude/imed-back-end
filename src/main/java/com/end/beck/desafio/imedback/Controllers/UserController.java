@@ -16,11 +16,10 @@ import com.end.beck.desafio.imedback.Model.User;
 import com.end.beck.desafio.imedback.Service.UserService;
 
 @RestController
-@RequestMapping(params = "/user")
+@RequestMapping(path = "/user")
 public class UserController {   
 
     private final UserService userService;
-
    
     public UserController(UserService userService) {
         this.userService = userService;
