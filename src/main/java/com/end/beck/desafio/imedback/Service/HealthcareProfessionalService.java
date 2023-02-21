@@ -9,14 +9,14 @@ import com.end.beck.desafio.imedback.Model.HealthcareProfessional;
 @Service
 public interface HealthcareProfessionalService {
     
-   List<HealthcareProfessional> getAllHealthcareProfessional();
+   List<HealthcareProfessional> findAll();
 
-    public Long findByHeathcareProfessionalId (Long id);
+    public HealthcareProfessional findById (Long id, HealthcareProfessional healthcareProfessional);
 
-    public HealthcareProfessional createHealthcareProfessional(HealthcareProfessional healthcareProfessional);
+    public HealthcareProfessional create(HealthcareProfessional healthcareProfessional);
 
-    public HealthcareProfessional updateHealthcareProfessional(HealthcareProfessional healthcareProfessional);
+    public HealthcareProfessional update(HealthcareProfessional healthcareProfessional);
 
-    public String deleteHealthcareProfessional(Long id);
+    public String delete(Long id);
  
 }

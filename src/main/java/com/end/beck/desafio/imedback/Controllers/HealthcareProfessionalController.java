@@ -27,36 +27,36 @@ public class HealthcareProfessionalController {
         this.healthcareProfessionalService = healthcareProfessionalService;
     }
    
-    @GetMapping(path="/healthcare-professionals")
-    public ResponseEntity <List<HealthcareProfessional>> healthcareProfessionals() {
-        return ResponseEntity.ok(this.healthcareProfessionalService.getAllHealthcareProfessional());
+    @GetMapping
+    public ResponseEntity <List<HealthcareProfessional>> findAll() {
+        return ResponseEntity.ok(this.healthcareProfessionalService.findAll());
     }
 
     @GetMapping(path="/{id}")
-    public ResponseEntity<Long> findOneHealtchcareProfessional(@PathVariable Long id) {
-        return ResponseEntity.ok(this.healthcareProfessionalService.findByHeathcareProfessionalId(id));
+    public ResponseEntity<HealthcareProfessional> findOneHealtchcareProfessional(@PathVariable Long id,HealthcareProfessional healthcareProfessional) {
+        return ResponseEntity.ok(this.healthcareProfessionalService.findById(id,healthcareProfessional));
     }
    
-    @PostMapping(path="/healthcare-professional")
+    @PostMapping
     @ResponseBody
     public ResponseEntity<HealthcareProfessional> create(HealthcareProfessional healthcareProfessional) {
         
         healthcareProfessional.setCreatedDate(ZonedDateTime.now());
         
-        return ResponseEntity.ok(this.healthcareProfessionalService.createHealthcareProfessional(healthcareProfessional));
+        return ResponseEntity.ok(this.healthcareProfessionalService.create(healthcareProfessional));
     }
   
     @PutMapping(path ="{id}")
     public ResponseEntity<HealthcareProfessional> update(@PathVariable Long id, HealthcareProfessional healthcareProfessional) {
         
-        this.healthcareProfessionalService.updateHealthcareProfessional(healthcareProfessional);
+        this.healthcareProfessionalService.update(healthcareProfessional);
 
         return ResponseEntity.ok(healthcareProfessional);    
     }
 
     @DeleteMapping(path ="{id}")
     public ResponseEntity<String> delete(Long id) {
-        return ResponseEntity.ok(healthcareProfessionalService.deleteHealthcareProfessional(id));       
+        return ResponseEntity.ok(healthcareProfessionalService.delete(id));       
     }
 
     

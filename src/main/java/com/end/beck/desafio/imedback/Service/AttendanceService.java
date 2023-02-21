@@ -10,13 +10,14 @@ public interface AttendanceService {
     
     public void existsAttendance(Attendance attendance);
 
-    public List<Attendance> getAllAttendance();
+    public List<Attendance> findAll();
 
-    public Long getAttendanceById (Long id);
+    public Attendance findById(Long id, Attendance attendance);
 
     public Attendance create(Attendance attendance);
 
     public Attendance update (Attendance attendance);
     
     public String delete(Long id);    
+
 }

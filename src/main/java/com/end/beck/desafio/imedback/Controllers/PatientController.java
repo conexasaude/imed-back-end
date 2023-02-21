@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.end.beck.desafio.imedback.Model.Patient;
+import com.end.beck.desafio.imedback.Model.DTO.PatientAttendanceDTO;
 import com.end.beck.desafio.imedback.Service.PatientService;
 
 import java.util.List;
@@ -25,17 +26,17 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-    @GetMapping(path="/patients")
-    public ResponseEntity <List<Patient>> getAllAttendance() {
-        return ResponseEntity.ok(this.patientService.getAllPatients());
+    @GetMapping
+    public ResponseEntity <List<Patient>> findAll() {
+        return ResponseEntity.ok(this.patientService.findAll());
     }
 
     @GetMapping(path="/{id}")
-    public ResponseEntity<Long> getAttendancebyId(@PathVariable Long id) {
-        return ResponseEntity.ok(this.patientService.getPatientById(id));
+    public ResponseEntity<Patient> getAttendancebyId(@PathVariable Long id, Patient patient) {
+        return ResponseEntity.ok(this.patientService.findById(id, patient));
     }
    
-    @PostMapping(path="/patient")
+    @PostMapping
     @ResponseBody
     public ResponseEntity<Patient> create(Patient patient) {                
         return ResponseEntity.ok(this.patientService.create(patient));
@@ -52,6 +53,12 @@ public class PatientController {
     @DeleteMapping(path ="/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         return ResponseEntity.ok(this.patientService.delete(id));                  
+    }
+
+    @PostMapping(path ="/{id}")
+    public ResponseEntity<PatientAttendanceDTO> attendanceConfirmation(@PathVariable Long id, PatientAttendanceDTO patientAttendanceDTO){
+       return ResponseEntity.ok(this.patientService.verificationAttendanceByConfirmation(patientAttendanceDTO));            
+        
     }
     
 }

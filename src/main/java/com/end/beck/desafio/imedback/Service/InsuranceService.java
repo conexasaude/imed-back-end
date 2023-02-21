@@ -9,9 +9,9 @@ import com.end.beck.desafio.imedback.Model.Insurance;
 @Service
 public interface InsuranceService  {
     
-    public List<Insurance> findAllInsurances();
+    public List<Insurance> findAll();
 
-    public Long getInsuranceById(Long id);
+    public Insurance findById(Long id, Insurance insurance);
     
     public Insurance create(Insurance insurance);
 

@@ -1,6 +1,9 @@
 package com.end.beck.desafio.imedback.Controllers;
 
 import java.util.List;
+
+import javax.ws.rs.core.Response;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,17 +28,17 @@ public class InsuranceController {
         this.insuranceService = insuranceService;
     }
 
-    @GetMapping(path="/insurances")
-    public ResponseEntity <List<Insurance>> getAllInsurance() {
-        return ResponseEntity.ok(this.insuranceService.findAllInsurances());
+    @GetMapping
+    public ResponseEntity <List<Insurance>> findAll() {
+        return ResponseEntity.ok(this.insuranceService.findAll());
     }
 
     @GetMapping(path="/{id}")
-    public Long findOne(@PathVariable Long id) {
-        return this.insuranceService.getInsuranceById(id);
+    public ResponseEntity<Insurance> findById(@PathVariable Long id, Insurance insurance) {
+        return ResponseEntity.ok(this.insuranceService.findById(id, insurance));
     }
    
-    @PostMapping(path="/insurance")
+    @PostMapping
     @ResponseBody
     public ResponseEntity<Insurance> create(Insurance insurance) {
                

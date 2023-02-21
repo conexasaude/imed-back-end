@@ -17,26 +17,27 @@ public class HealthcareProfessionalServiceImpl implements HealthcareProfessional
        this.healthcareProfessionalRepository = healthcareProfessionalRepository;
     }
 
-    public List<HealthcareProfessional> getAllHealthcareProfessional() {
+    public List<HealthcareProfessional> findAll() {
         return this.healthcareProfessionalRepository.findAll();
     }
 
-    public Long findByHeathcareProfessionalId(Long id) {
-        return this.healthcareProfessionalRepository.findByHeathcareProfessionalId(id);
+    public HealthcareProfessional findById(Long id, HealthcareProfessional healthcareProfessional) {
+        this.healthcareProfessionalRepository.findById(id);
+        return healthcareProfessional;
     }
 
-    public HealthcareProfessional createHealthcareProfessional(HealthcareProfessional healthcareProfessional) {               
+    public HealthcareProfessional create(HealthcareProfessional healthcareProfessional) {               
         return this.healthcareProfessionalRepository.save(healthcareProfessional);
     }
 
-    public HealthcareProfessional updateHealthcareProfessional(HealthcareProfessional healthcareProfessional) {
+    public HealthcareProfessional update(HealthcareProfessional healthcareProfessional) {
         healthcareProfessional.setName(healthcareProfessional.getName());
         healthcareProfessional.setCrm(healthcareProfessional.getCrm());
        
         return this.healthcareProfessionalRepository.save(healthcareProfessional);
     }
 
-    public String deleteHealthcareProfessional(Long id) {
+    public String delete(Long id) {
         
         try {
             this.healthcareProfessionalRepository.deleteById(id);

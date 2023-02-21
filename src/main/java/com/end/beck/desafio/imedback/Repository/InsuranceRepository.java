@@ -9,6 +9,4 @@ import com.end.beck.desafio.imedback.Model.Insurance;
 @Repository
 public interface InsuranceRepository extends JpaRepository<Insurance,Long> {
     
-    @Query(value = "Select * insurance where id = :id", nativeQuery = true)
-    public Long findInsuranceById(Long id);
 }

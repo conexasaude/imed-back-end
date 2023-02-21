@@ -14,12 +14,13 @@ public class InsuranceServiceImpl implements InsuranceService {
     
     private InsuranceRepository insuranceRepository;
 
-    public List<Insurance> findAllInsurances() {
+    public List<Insurance> findAll() {
         return this.insuranceRepository.findAll();
     }
 
-    public Long getInsuranceById(Long id){
-        return insuranceRepository.findInsuranceById(id);
+    public Insurance findById(Long id , Insurance insurance){
+        insuranceRepository.findById(id);
+        return insurance;
     }
     
     public Insurance create(Insurance insurance) {

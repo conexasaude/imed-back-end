@@ -9,9 +9,6 @@ import com.end.beck.desafio.imedback.Model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User , Long> {
 
-    @Query(value="SELECT * FROM users WHERE id = :id", nativeQuery= true )
-    public Long findUserById(Long id);
-
     public User findByUsername(String username);
     
 }

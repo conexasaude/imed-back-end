@@ -25,7 +25,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping(path="/users")
+    @GetMapping
     public ResponseEntity <List<User>> users() {
         return ResponseEntity.ok(this.userService.getAllUsers());
     }
@@ -35,7 +35,7 @@ public class UserController {
         return ResponseEntity.ok(this.userService.getUserById(id));
     }
    
-    @PostMapping(path="/user")
+    @PostMapping
     @ResponseBody
     public ResponseEntity<User> create(User user) {
               

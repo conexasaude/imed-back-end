@@ -8,8 +8,5 @@ import com.end.beck.desafio.imedback.Model.Attendance;
 
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance, Long>{
-
-    @Query(value = "select * from attendance where id = :id", nativeQuery = true )
-    Long findByAttendanceId (Long id);
     
 }
