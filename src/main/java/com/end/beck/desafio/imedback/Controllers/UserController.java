@@ -26,13 +26,13 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity <List<User>> users() {
-        return ResponseEntity.ok(this.userService.getAllUsers());
+    public ResponseEntity <List<User>> findAll() {
+        return ResponseEntity.ok(this.userService.findAll());
     }
 
     @GetMapping(path="/{id}")
-    public ResponseEntity<Long> findUser(@PathVariable Long id) {
-        return ResponseEntity.ok(this.userService.getUserById(id));
+    public ResponseEntity<User> findById(@PathVariable Long id, User user) {
+        return ResponseEntity.ok(this.userService.findById(id, user));
     }
    
     @PostMapping

@@ -9,9 +9,9 @@ import com.end.beck.desafio.imedback.Model.User;
 @Service
 public interface UserService {
     
-    public List<User> getAllUsers();
+    public List<User> findAll();
 
-    public Long getUserById(Long id);
+    public User findById(Long id, User user);
 
     public User create(User user);
 

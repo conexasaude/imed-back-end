@@ -23,12 +23,13 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getAllUsers() {
+    public List<User> findAll() {
         return this.userRepository.findAll();
     }
 
-    public Long getUserById(Long id) {
-        return this.userRepository.findUserById(id);
+    public User findById(Long id, User user) {
+        this.userRepository.findById(id);
+        return user;
     }
 
     public User create(User user) {

@@ -2,8 +2,6 @@ package com.end.beck.desafio.imedback.Controllers;
 
 import java.util.List;
 
-import javax.ws.rs.core.Response;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

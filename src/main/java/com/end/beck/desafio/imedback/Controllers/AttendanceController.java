@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.end.beck.desafio.imedback.Model.Attendance;
-import com.end.beck.desafio.imedback.Model.DTO.PatientAttendanceDTO;
 import com.end.beck.desafio.imedback.Service.AttendanceService;
 
 @RestController
