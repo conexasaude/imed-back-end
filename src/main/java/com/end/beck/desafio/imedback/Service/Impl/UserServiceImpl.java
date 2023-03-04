@@ -3,6 +3,9 @@ package com.end.beck.desafio.imedback.Service.Impl;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,8 +26,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> findAll() {
-        return this.userRepository.findAll();
+    public Page<User> findAll(int page, int size) {
+
+        Pageable pageResult = PageRequest.of(page, size);
+
+        return this.userRepository.findAll(pageResult);
     }
 
     public User findById(Long id, User user) {

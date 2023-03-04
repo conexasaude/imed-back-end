@@ -1,6 +1,7 @@
 package com.end.beck.desafio.imedback.Controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,6 +11,8 @@ import com.end.beck.desafio.imedback.Model.DTO.PatientAttendanceDTO;
 import com.end.beck.desafio.imedback.Service.PatientService;
 
 import java.util.List;
+
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,8 +30,12 @@ public class PatientController {
     }
 
     @GetMapping
-    public ResponseEntity <List<Patient>> findAll() {
-        return ResponseEntity.ok(this.patientService.findAll());
+    public ResponseEntity <Page<Patient>> findAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+
+    ) {
+        return ResponseEntity.ok(this.patientService.findAll(page, size));
     }
 
     @GetMapping(path="/{id}")

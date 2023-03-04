@@ -1,7 +1,7 @@
 package com.end.beck.desafio.imedback.Service;
 
-import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.end.beck.desafio.imedback.Model.User;
@@ -9,7 +9,7 @@ import com.end.beck.desafio.imedback.Model.User;
 @Service
 public interface UserService {
     
-    public List<User> findAll();
+    public Page<User> findAll(int page, int size);
 
     public User findById(Long id, User user);
 

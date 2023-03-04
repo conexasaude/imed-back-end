@@ -2,7 +2,12 @@ package com.end.beck.desafio.imedback.Service.Impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.end.beck.desafio.imedback.Model.Patient;
 import com.end.beck.desafio.imedback.Model.DTO.PatientAttendanceDTO;
@@ -19,8 +24,11 @@ public class PatientServiceImpl implements PatientService {
         this.patientRepository = patientRepository;
     }
 
-    public List<Patient> findAll() {
-        return this.patientRepository.findAll();
+    public Page<Patient> findAll(int page,int size) {
+
+        Pageable pageResult = PageRequest.of(page, size);
+
+        return this.patientRepository.findAll(pageResult);
     }
 
     public Patient findById(Long id, Patient patient) {

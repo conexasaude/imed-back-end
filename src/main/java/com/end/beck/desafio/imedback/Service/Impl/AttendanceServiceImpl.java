@@ -1,6 +1,10 @@
 package com.end.beck.desafio.imedback.Service.Impl;
 
 import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.end.beck.desafio.imedback.Model.Attendance;
@@ -16,9 +20,11 @@ public class AttendanceServiceImpl implements AttendanceService {
         this.attendanceRepository = attendanceRepository;
     }
 
-    public List<Attendance> findAll() {
+    public Page<Attendance> findAll(int page, int size) {
+        
+        Pageable pageResult =  PageRequest.of(page, size);
 
-        return this.attendanceRepository.findAll();
+        return this.attendanceRepository.findAll(pageResult);
     }
 
     public Attendance findById(Long id, Attendance attendance) {

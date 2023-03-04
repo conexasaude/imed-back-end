@@ -1,6 +1,10 @@
 package com.end.beck.desafio.imedback.Service.Impl;
 
 import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.end.beck.desafio.imedback.Model.HealthcareProfessional;
@@ -17,8 +21,11 @@ public class HealthcareProfessionalServiceImpl implements HealthcareProfessional
        this.healthcareProfessionalRepository = healthcareProfessionalRepository;
     }
 
-    public List<HealthcareProfessional> findAll() {
-        return this.healthcareProfessionalRepository.findAll();
+    public Page<HealthcareProfessional> findAll(int page, int size) {
+        
+        Pageable pegeResult = PageRequest.of(page, size);
+
+        return this.healthcareProfessionalRepository.findAll(pegeResult);
     }
 
     public HealthcareProfessional findById(Long id, HealthcareProfessional healthcareProfessional) {
