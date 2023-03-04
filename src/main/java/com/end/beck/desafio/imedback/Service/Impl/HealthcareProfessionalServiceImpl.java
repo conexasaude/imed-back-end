@@ -47,7 +47,9 @@ public class HealthcareProfessionalServiceImpl implements HealthcareProfessional
     public String delete(Long id) {
         
         try {
-            this.healthcareProfessionalRepository.deleteById(id);
+            if(null != id) {
+                this.healthcareProfessionalRepository.deleteById(id);
+            }
                         
             return "deletado com"+ id +" sucesso";
         } catch (Exception e) {

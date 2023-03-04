@@ -37,8 +37,13 @@ public class InsuranceServiceImpl implements InsuranceService {
     }
 
     public String delete(Long id) {
+        
         try {
-            this.insuranceRepository.deleteById(id);
+
+            if (null != id) {
+                this.insuranceRepository.deleteById(id);
+                
+            }   
                                     
             return "deletado "+ id +" com sucesso";
         } catch (Exception e) {

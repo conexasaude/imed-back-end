@@ -50,8 +50,12 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     public String delete(Long id) {
+
         try {
-            this.userRepository.deleteById(id);
+
+            if (null != id) {
+                this.userRepository.deleteById(id);
+            }
                         
             return "deletado "+ id +" sucesso";
         } catch (Exception e) {

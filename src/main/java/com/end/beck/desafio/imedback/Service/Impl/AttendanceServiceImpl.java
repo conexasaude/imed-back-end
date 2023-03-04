@@ -53,9 +53,13 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     public String delete(Long id) {
+      
         try {
-            this.attendanceRepository.deleteById(id);
-                                    
+
+            if(null != id) {
+                this.attendanceRepository.deleteById(id);
+            }                
+                                
             return "deletado "+ id +" com sucesso";
         } catch (Exception e) {
            return e + "erro ao deletar atendimento";
