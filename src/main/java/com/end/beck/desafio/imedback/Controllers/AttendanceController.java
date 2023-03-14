@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.end.beck.desafio.imedback.Mapper.AttendanceMapper;
 import com.end.beck.desafio.imedback.Model.Attendance;
+import com.end.beck.desafio.imedback.Model.DTO.AttendanceDTO;
 import com.end.beck.desafio.imedback.Service.AttendanceService;
 
 @RestController
@@ -37,22 +39,28 @@ public class AttendanceController{
     }
 
     @GetMapping(path="/{id}")
-    public ResponseEntity<Attendance> findById(@PathVariable Long id, Attendance attendance) {
-        return ResponseEntity.ok(this.attendanceService.findById(id, attendance));
+    public ResponseEntity<AttendanceDTO> findById(@PathVariable Long id, Attendance attendance) {
+
+        this.attendanceService.findById(id, attendance);
+
+        return ResponseEntity.ok(AttendanceMapper.convertToDTO(attendance));
     }
    
     @PostMapping
     @ResponseBody
-    public ResponseEntity<Attendance> create(Attendance attendance) {                
-        return ResponseEntity.ok(this.attendanceService.create(attendance));
+    public ResponseEntity<AttendanceDTO> create(Attendance attendance) {  
+        
+        this.attendanceService.create(attendance);
+
+        return ResponseEntity.ok(AttendanceMapper.convertToDTO(attendance));
     }
   
     @PutMapping(path ="/{id}")
-    public ResponseEntity<Attendance> update( @PathVariable Long id, Attendance attendance) {
+    public ResponseEntity<AttendanceDTO> update( @PathVariable Long id, Attendance attendance) {
        
         this.attendanceService.update(attendance);
         
-        return ResponseEntity.ok(attendance);    
+        return ResponseEntity.ok(AttendanceMapper.convertToDTO(attendance));    
     }
 
     @DeleteMapping(path ="/{id}")
