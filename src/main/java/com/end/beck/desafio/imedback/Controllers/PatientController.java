@@ -5,9 +5,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.end.beck.desafio.imedback.Mapper.PatientMapper;
 import com.end.beck.desafio.imedback.Model.Patient;
 import com.end.beck.desafio.imedback.Model.DTO.PatientAttendanceDTO;
+import com.end.beck.desafio.imedback.Model.DTO.PatientDTO;
 import com.end.beck.desafio.imedback.Service.PatientService;
 
 import java.util.List;
@@ -39,32 +40,32 @@ public class PatientController {
     }
 
     @GetMapping(path="/{id}")
-    public ResponseEntity<Patient> getAttendancebyId(@PathVariable Long id, Patient patient) {
-        return ResponseEntity.ok(this.patientService.findById(id, patient));
+    public void getAttendancebyId(@PathVariable Long id, PatientDTO patientDTO) {
+        Patient patient = PatientMapper.convertToEntity(patientDTO);
+        this.patientService.findById(id, patient);
     }
    
     @PostMapping
     @ResponseBody
-    public ResponseEntity<Patient> create(Patient patient) {                
-        return ResponseEntity.ok(this.patientService.create(patient));
+    public void create(PatientDTO patientDTO) {
+        Patient patient = PatientMapper.convertToEntity(patientDTO);                
+        this.patientService.create(patient);
     }
   
     @PutMapping(path ="/{id}")
-    public ResponseEntity<Patient> update(@PathVariable Long id, Patient patient) {
-        
-        this.patientService.update(patient);
-        
-        return ResponseEntity.ok(patient);    
+    public void update(@PathVariable Long id, PatientDTO patientDTO) {
+        Patient patient = PatientMapper.convertToEntity(patientDTO);
+        this.patientService.update(patient);   
     }
 
     @DeleteMapping(path ="/{id}")
-    public ResponseEntity<String> delete(@PathVariable Long id) {
-        return ResponseEntity.ok(this.patientService.delete(id));                  
+    public void delete(@PathVariable Long id) {
+        this.patientService.delete(id);                  
     }
 
     @PostMapping(path ="/{id}")
-    public ResponseEntity<PatientAttendanceDTO> attendanceConfirmation(@PathVariable Long id, PatientAttendanceDTO patientAttendanceDTO){
-       return ResponseEntity.ok(this.patientService.verificationAttendanceByConfirmation(patientAttendanceDTO));            
+    public void attendanceConfirmation(@PathVariable Long id, PatientAttendanceDTO patientAttendanceDTO){
+       this.patientService.verificationAttendanceByConfirmation(patientAttendanceDTO);            
         
     }
     

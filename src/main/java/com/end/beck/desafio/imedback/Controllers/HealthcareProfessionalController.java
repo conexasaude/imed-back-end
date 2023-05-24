@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.end.beck.desafio.imedback.Mapper.HealthcareProfessionalMapper;
 import com.end.beck.desafio.imedback.Model.HealthcareProfessional;
+import com.end.beck.desafio.imedback.Model.DTO.HealthcareProfessionalDTO;
 import com.end.beck.desafio.imedback.Service.HealthcareProfessionalService;
 
 @RestController
@@ -30,38 +32,36 @@ public class HealthcareProfessionalController {
     }
    
     @GetMapping
-    public ResponseEntity <Page<HealthcareProfessional>> findAll(
+    public void findAll(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
-        return ResponseEntity.ok(this.healthcareProfessionalService.findAll(page,size));
+        this.healthcareProfessionalService.findAll(page,size);
     }
 
     @GetMapping(path="/{id}")
-    public ResponseEntity<HealthcareProfessional> findOneHealtchcareProfessional(@PathVariable Long id,HealthcareProfessional healthcareProfessional) {
-        return ResponseEntity.ok(this.healthcareProfessionalService.findById(id,healthcareProfessional));
+    public void findOneHealtchcareProfessional(@PathVariable Long id,HealthcareProfessionalDTO healthcareProfessionalDTO) {
+      HealthcareProfessional healthcareProfessional = HealthcareProfessionalMapper.convertToEntity(healthcareProfessionalDTO);
+        this.healthcareProfessionalService.findById(id,healthcareProfessional);
     }
    
     @PostMapping
     @ResponseBody
-    public ResponseEntity<HealthcareProfessional> create(HealthcareProfessional healthcareProfessional) {
-        
+    public void create(HealthcareProfessionalDTO healthcareProfessionalDTO) {
+        HealthcareProfessional healthcareProfessional = HealthcareProfessionalMapper.convertToEntity(healthcareProfessionalDTO);
         healthcareProfessional.setCreatedDate(ZonedDateTime.now());
-        
-        return ResponseEntity.ok(this.healthcareProfessionalService.create(healthcareProfessional));
+        this.healthcareProfessionalService.create(healthcareProfessional);
     }
   
     @PutMapping(path ="{id}")
-    public ResponseEntity<HealthcareProfessional> update(@PathVariable Long id, HealthcareProfessional healthcareProfessional) {
-        
+    public void update(@PathVariable Long id, HealthcareProfessionalDTO healthcareProfessionalDTO) {
+        HealthcareProfessional healthcareProfessional = HealthcareProfessionalMapper.convertToEntity(healthcareProfessionalDTO);
         this.healthcareProfessionalService.update(healthcareProfessional);
-
-        return ResponseEntity.ok(healthcareProfessional);    
     }
 
     @DeleteMapping(path ="{id}")
-    public ResponseEntity<String> delete(Long id) {
-        return ResponseEntity.ok(healthcareProfessionalService.delete(id));       
+    public void delete(Long id) {
+        healthcareProfessionalService.delete(id);       
     }
 
     

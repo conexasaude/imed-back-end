@@ -39,34 +39,27 @@ public class AttendanceController{
     }
 
     @GetMapping(path="/{id}")
-    public ResponseEntity<AttendanceDTO> findById(@PathVariable Long id, Attendance attendance) {
-
+    public void findById(@PathVariable Long id, AttendanceDTO attendanceDTO) {
+        Attendance attendance =  AttendanceMapper.convertToEntity(attendanceDTO);
         this.attendanceService.findById(id, attendance);
-
-        return ResponseEntity.ok(AttendanceMapper.convertToDTO(attendance));
     }
    
     @PostMapping
     @ResponseBody
-    public ResponseEntity<AttendanceDTO> create(Attendance attendance) {  
-        
+    public void create(AttendanceDTO attendanceDTO) {  
+        Attendance attendance =  AttendanceMapper.convertToEntity(attendanceDTO);
         this.attendanceService.create(attendance);
-
-        return ResponseEntity.ok(AttendanceMapper.convertToDTO(attendance));
     }
   
     @PutMapping(path ="/{id}")
-    public ResponseEntity<AttendanceDTO> update( @PathVariable Long id, Attendance attendance) {
-       
+    public void update(@PathVariable Long id, AttendanceDTO attendanceDTO) {
+        Attendance attendance =  AttendanceMapper.convertToEntity(attendanceDTO);    
         this.attendanceService.update(attendance);
-        
-        return ResponseEntity.ok(AttendanceMapper.convertToDTO(attendance));    
     }
 
     @DeleteMapping(path ="/{id}")
-    public ResponseEntity<String> delete(@PathVariable Long id){
-       return ResponseEntity.ok(this.attendanceService.delete(id));            
-        
+    public void delete(@PathVariable Long id){
+       this.attendanceService.delete(id);            
     }
     
 }
